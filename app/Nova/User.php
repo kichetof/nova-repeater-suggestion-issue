@@ -2,11 +2,14 @@
 
 namespace App\Nova;
 
+use App\Nova\Repeaters\DeskItem;
+use App\Nova\Repeaters\OfficeItem;
 use Illuminate\Http\Request;
 use Laravel\Nova\Auth\PasswordValidationRules;
 use Laravel\Nova\Fields\Gravatar;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Fields\Password;
+use Laravel\Nova\Fields\Repeater;
 use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Http\Requests\NovaRequest;
 
@@ -46,6 +49,11 @@ class User extends Resource
     {
         return [
             ID::make()->sortable(),
+
+            Repeater::make('Info')->repeatables([
+                OfficeItem::make(),
+                DeskItem::make(),
+            ])->asJson(),
 
             Gravatar::make()->maxWidth(50),
 
