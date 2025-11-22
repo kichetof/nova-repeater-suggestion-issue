@@ -59,7 +59,8 @@ class User extends Resource
 
             Text::make('Name')
                 ->sortable()
-                ->rules('required', 'max:255'),
+                ->rules('required', 'max:255')
+                ->suggestions(['Name 1, Name 2, Name 3']),
 
             Text::make('Email')
                 ->sortable()
